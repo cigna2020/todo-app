@@ -1,0 +1,10 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.block-wrapper {
+  width: 1160px;
+}
