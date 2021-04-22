@@ -13,29 +13,80 @@
   <title>TODO-app</title>
 </head>
 
-<header class="header">
-  <div class="block-wrapper">
-    <a href="#" class="logo">TODO</a>
-    <nav class="nav">
-      <ul class="nav-block">
-        <li class="nav-item"><a href="#">Add New Task</a></li>
-        <li class="nav-item"><a href="#">Done Tasks</a></li>
-        <li class="nav-item"><a href="#">Hidden Tasks</a></li>
-        <li class="nav-item"><input type="text" placeholder="Search your task"></a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<div class="block-wrapper">
-  <form class="add-task-form">
-    <label class="label-new-task" for="input-task">Add your task</label>
-    <input class="input-new-task" type="text" name="input-task" placeholder="New task">
-    <button class="btn" id="add-btn">Add</button>
-  </form>
-</div>
-
 <body>
+  <header class="header">
+    <div class="block-wrapper">
+      <a href="#input-new-task" class="logo">
+        <h1>TODO</h1>
+      </a>
+      <nav class="nav">
+        <ul class="nav-block">
+          <li class="nav-item"><a href="#input-new-task">Add New Task</a></li>
+          <li class="nav-item"><a href="#">Done Tasks</a></li>
+          <li class="nav-item"><a href="#">Hidden Tasks</a></li>
+          <li class="nav-item"><input type="text" placeholder="Search your task"></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <div class="block-wrapper">
+    <form class="add-task-form">
+      <label class="label-new-task" for="input-task">Add your task</label>
+      <input class="input-new-task" id="input-new-task" type="text" name="input-task" placeholder="New task">
+      <button class="btn" id="add-btn">Add</button>
+    </form>
+  </div>
+
+  <main>
+    <div class="block-wrapper">
+      <div class="list-title">List of tasks in progress</div>
+      <ul class="list-progress" id="list-progress">
+        <li class="progress-item">
+          <label class="label-progress">Test, task #1, label</label>
+          <input type="text" class="progress-task" placeholder="Test, task #1">
+          <button class="progress-btn" id="done-task" title="mark as done">&#10004;</button>
+          <button class="progress-btn" id="delete-task" title="delete task">&#10008;</button>
+          <button class="progress-btn" id="edit-task" title="edit your task">&#10002;</button>
+        </li>
+        <li class="progress-item">
+          <label class="label-progress">Test, task #2, label</label>
+          <input type="text" class="progress-task" placeholder="Test, task #2">
+          <button class="progress-btn" id="done-task" title="mark as done">&#10004;</button>
+          <button class="progress-btn" id="delete-task" title="delete task">&#10008;</button>
+          <button class="progress-btn" id="edit-task" title="edit your task">&#10002;</button>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <div class="block-wrapper">
+    <div class="list-title">List of tasks in progress</div>
+    <ul class="list-done" id="list-done">
+      <li class="done-item">
+        <label class="label-progress">Done test, task #1, label</label>
+        <input type="text" class="progress-task" placeholder="Done test, task #1">
+        <button class="progress-btn" id="delete-task" title="delete task">&#10008;</button>
+        <button class="progress-btn" id="edit-task" title="edit your task">&#10002;</button>
+      </li>
+      <li class="progress-item">
+        <label class="label-progress">Test, task #2, label</label>
+        <input type="text" class="progress-task" placeholder="Test, task #2">
+        <button class="progress-btn" id="delete-task" title="delete task">&#10008;</button>
+        <button class="progress-btn" id="edit-task" title="edit your task">&#10002;</button>
+      </li>
+    </ul>
+  </div>
+
+  <footer>
+    <div class="footer-logo">
+      <a href="#input-new-task" class="logo">
+        <h1>TODO</h1>
+      </a>
+    </div>
+    <div class="github"><a href="https://github.com/cigna2020">Alexander Tsyg</a></div>
+  </footer>
 </body>
+<script src="./script.js"></script>
 
 </html>
