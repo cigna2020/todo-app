@@ -3,8 +3,180 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  list-style: none;
+}
+
+body {
+  height: 100vh;
+  position: relative;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    103deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(13, 92, 152, 1) 60%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 .block-wrapper {
   width: 1160px;
+}
+
+.header {
+  width: 100%;
+  height: 60px;
+  padding: 10px 0;
+  background: rgb(1, 1, 8);
+  background: linear-gradient(
+    103deg,
+    rgba(1, 1, 8, 1) 0%,
+    rgba(7, 9, 11, 1) 72%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.main-logo {
+  width: 100px;
+  height: 40px;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 15px;
+}
+
+.main-logo a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-block {
+  display: flex;
+  width: 150%;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.nav-item a:hover,
+.main-logo a:hover {
+  color: #cf8a0a;
+}
+
+.search input {
+  height: 30px;
+  padding-left: 10px;
+  border-radius: 15px;
+}
+
+.add-task-form {
+  margin-top: 50px;
+  align-items: center;
+}
+
+.label-new-task {
+  font-size: 36px;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.input-new-task {
+  width: 640px;
+  height: 40px;
+  border-radius: 15px;
+  padding-left: 10px;
+}
+
+.new-task-btn {
+  width: 60px;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3437e2;
+  cursor: pointer;
+}
+
+.new-task-btn:hover {
+  background: cyan;
+  color: #cf8a0a;
+}
+
+.list-title {
+  margin: 0;
+  width: 400px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.title-wrapper {
+  display: flex;
+  margin-top: 50px;
+  font-size: 36px;
+  justify-content: space-between;
+}
+.progress-item {
+  margin-top: 20px;
+}
+
+.label-progress {
+  display: inline-flex;
+  align-items: center;
+  /* display: none; */
+  width: 750px;
+  height: 40px;
+  padding-left: 10px;
+  color: #fff;
+  border: 1px solid #1c50e0;
+  border-radius: 15px;
+}
+
+.progress-input {
+  display: none;
+  width: 750px;
+  height: 30px;
+  border-radius: 15px;
+  padding-left: 10px;
+}
+
+.progress-btn {
+  height: 30px;
+  width: 60px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.progress-btn:hover {
+  background: cyan;
+  color: #cf8a0a;
+}
+
+.toggle {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3437e2;
+}
+
+.footer {
+  display: flex;
+  margin-top: 250px;
+}
+
+.github a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.github a:hover {
+  color: #102e80;
 }
