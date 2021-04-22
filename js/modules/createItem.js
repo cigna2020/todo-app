@@ -22,7 +22,8 @@ export class CreateItem {
   }
 
   static checkLengthOfInputValue(value) {
-    if (value.length > 80) throw new Error('The value is too long. Please enter less than 80 characters.')
+    const lengthOfValue = (value.length < 80 && value.trim().length > 0);
+    if (!lengthOfValue) throw new Error('The value is incorrect.')
   }
 
   static resetInputValue() {
