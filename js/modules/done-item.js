@@ -14,15 +14,11 @@ export class DoneItem {
     return parentElem;
   }
 
-  removeItemFromListInProgress(event) {
-    event.target.parentElement.remove();
-  }
-
   setHandler() {
     this.doneBtns.forEach(el => el.addEventListener('click', (event) => {
       this.copyParentElem(event)
       console.log(this.copyParentElem(event));
-      this.removeItemFromListInProgress(event)
+      DeletedItem.removeItemFromLis(event)
     }))
   }
 
