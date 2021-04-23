@@ -1,6 +1,6 @@
 import {DomItems} from '../utils/dom-items.js'
 
-export class CreateItem {
+export class Item {
 
   ADD_NEW_TASK_BTN = DomItems.addNewTaskBtn();
   LIST_TASK_IN_PROGRESS = DomItems.listTaskInProgress();
