@@ -1,14 +1,14 @@
 export class DomItems {
 
-  static listTaskInProgress() {
+  static getListTaskInProgress() {
     return document.getElementById('list-progress');
   }
 
-  static inputNewTask() {
+  static getInputNewTask() {
     return document.getElementById('input-new-task');
   }
 
-  static addNewTaskBtn() {
+  static getNewTaskBtn() {
     return document.getElementById('add-btn');
   }
 }
