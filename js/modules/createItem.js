@@ -1,6 +1,6 @@
-import {listTasksInProgress} from './consts.js';
-import {inputNewTask} from './consts.js';
-import {addNewTaskBtn} from './consts.js';
+import {LIST_TASK_IN_PROGRESS} from './consts.js';
+import {INPUT_NEW_TASK} from './consts.js';
+import {ADD_NEW_TASK_BTN} from './consts.js';
 
 export class CreateItem {
 
@@ -10,7 +10,7 @@ export class CreateItem {
 
   static createListElement(value) {
     let newTaskItem = document.createElement('li');
-    listTasksInProgress.append(newTaskItem);
+    LIST_TASK_IN_PROGRESS.append(newTaskItem);
     newTaskItem.classList.add('progress-item');
     newTaskItem.innerHTML = `
           <label class="label-progress">${value}</label>
@@ -27,14 +27,14 @@ export class CreateItem {
   }
 
   static resetInputValue() {
-    inputNewTask.value = '';
+    INPUT_NEW_TASK.value = '';
   }
 
   setHandler() {
-    addNewTaskBtn.addEventListener('click', (e) => {
+    ADD_NEW_TASK_BTN.addEventListener('click', (e) => {
       e.preventDefault();
-      const inputValue = inputNewTask.value;
-      // console.log(inputNewTask.value)
+      const inputValue = INPUT_NEW_TASK.value;
+      // console.log(INPUT_NEW_TASK.value)
       CreateItem.checkLengthOfInputValue(inputValue);
       CreateItem.createListElement(inputValue);
       CreateItem.resetInputValue();
