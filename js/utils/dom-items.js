@@ -4,6 +4,10 @@ export class DomItems {
     return document.getElementById('list-progress');
   }
 
+  static getListDoneTask() {
+    return document.getElementById('list-done');
+  }
+
   static getInputNewTask() {
     return document.getElementById('input-new-task');
   }
