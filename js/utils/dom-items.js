@@ -12,6 +12,10 @@ export class DomItems {
     return document.getElementById('add-btn');
   }
 
+  static getAllDoneBtns() {
+    return document.querySelectorAll('.done-btn');
+  }
+
   static renderListItem(parentElem, childElem) {
     parentElem.append(childElem);
   }
