@@ -1,4 +1,5 @@
-import {DomItems} from '../utils/dom-items.js'
+import {DomItems} from '../utils/dom-items.js';
+import {Validator} from '../utils/validator.js';
 
 export class Item {
 
@@ -22,11 +23,6 @@ export class Item {
           `)
   }
 
-  checkLengthOfInputValue(value) {
-    const lengthOfValue = (value.length < 80 && value.trim().length > 0);
-    if (!lengthOfValue) throw new Error('The value is incorrect.')
-  }
-
   resetInputValue() {
     this.INPUT_NEW_TASK.value = '';
   }
@@ -35,7 +31,7 @@ export class Item {
     this.ADD_NEW_TASK_BTN.addEventListener('click', (e) => {
       e.preventDefault();
       const inputValue = this.INPUT_NEW_TASK.value;
-      this.checkLengthOfInputValue(inputValue);
+      Validator.checkLengthOfInputValue(inputValue);
       this.createListElement(inputValue);
       this.resetInputValue();
     })
