@@ -1,16 +1,18 @@
-import {LIST_TASK_IN_PROGRESS} from './consts.js';
-import {INPUT_NEW_TASK} from './consts.js';
-import {ADD_NEW_TASK_BTN} from './consts.js';
+import {DomItems} from '../utils/dom-items.js'
 
 export class CreateItem {
 
+  ADD_NEW_TASK_BTN = DomItems.addNewTaskBtn();
+  LIST_TASK_IN_PROGRESS = DomItems.listTaskInProgress();
+  INPUT_NEW_TASK = DomItems.inputNewTask();
+
   constructor() {
-    this.setHandler()
+    this.setHandler();
   }
 
-  static createListElement(value) {
+  createListElement(value) {
     let newTaskItem = document.createElement('li');
-    LIST_TASK_IN_PROGRESS.append(newTaskItem);
+    this.LIST_TASK_IN_PROGRESS.append(newTaskItem);
     newTaskItem.classList.add('progress-item');
     newTaskItem.innerHTML = `
           <label class="label-progress">${value}</label>
@@ -21,23 +23,22 @@ export class CreateItem {
           `
   }
 
-  static checkLengthOfInputValue(value) {
+  checkLengthOfInputValue(value) {
     const lengthOfValue = (value.length < 80 && value.trim().length > 0);
     if (!lengthOfValue) throw new Error('The value is incorrect.')
   }
 
-  static resetInputValue() {
-    INPUT_NEW_TASK.value = '';
+  resetInputValue() {
+    this.INPUT_NEW_TASK.value = '';
   }
 
   setHandler() {
-    ADD_NEW_TASK_BTN.addEventListener('click', (e) => {
+    this.ADD_NEW_TASK_BTN.addEventListener('click', (e) => {
       e.preventDefault();
-      const inputValue = INPUT_NEW_TASK.value;
-      // console.log(INPUT_NEW_TASK.value)
-      CreateItem.checkLengthOfInputValue(inputValue);
-      CreateItem.createListElement(inputValue);
-      CreateItem.resetInputValue();
+      const inputValue = this.INPUT_NEW_TASK.value;
+      this.checkLengthOfInputValue(inputValue);
+      this.createListElement(inputValue);
+      this.resetInputValue();
     })
   }
 }
