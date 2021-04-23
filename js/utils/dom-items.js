@@ -11,4 +11,8 @@ export class DomItems {
   static getNewTaskBtn() {
     return document.getElementById('add-btn');
   }
+
+  static renderListItem(parentElem, childElem) {
+    parentElem.append(childElem);
+  }
 }

@@ -1,4 +1,4 @@
-import {Item} from './js/modules/createItem.js'
+import {Item} from './js/modules/item.js'
 
 document.addEventListener('DOMContentLoaded', handler);
 

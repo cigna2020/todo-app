@@ -24,12 +24,12 @@ export class Item {
     return newListItem;
   }
 
-  renderListItem(parentElem, childElem) {
-    parentElem.append(childElem);
-  }
-
   resetInputValue() {
     this.inputNewTask.value = '';
+  }
+
+  renderElement(value) {
+    DomItems.renderListItem(this.listTaskInProgress, this.createListItem(value));
   }
 
   setHandler() {
@@ -37,7 +37,7 @@ export class Item {
       e.preventDefault();
       const inputValue = this.inputNewTask.value;
       Validator.checkLengthOfInputValue(inputValue);
-      this.renderListItem(this.listTaskInProgress, this.createListItem(inputValue));
+      this.renderElement(inputValue);
       this.resetInputValue();
     })
   }
