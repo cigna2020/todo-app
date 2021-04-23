@@ -6,6 +6,7 @@ export class Item {
   addNewTaskBtn = DomItems.getNewTaskBtn();
   listTaskInProgress = DomItems.getListTaskInProgress();
   inputNewTask = DomItems.getInputNewTask();
+  listDoneTask = DomItems.getListDoneTask();
 
   constructor() {
     this.setHandler();
@@ -24,6 +25,20 @@ export class Item {
     return newListItem;
   }
 
+  createDoneItem(value) {
+    const newListItem = document.createElement('li');
+    newListItem.classList.add('progress-item');
+    newListItem.append(DomItems.copyChildtElem(value));
+    newListItem.insertAdjacentHTML('beforeend', `
+          <button class="progress-btn" id="delete-task" title="delete task">&#10008;</button>
+          `)
+    return newListItem;
+  }
+
+  removeItemFromList(event) {
+    event.target.parentElement.remove();
+  }
+
   resetInputValue() {
     this.inputNewTask.value = '';
   }
@@ -32,7 +47,11 @@ export class Item {
     DomItems.renderListItem(this.listTaskInProgress, this.createListItem(value));
   }
 
-  setHandler() {
+  renderDoneElement(value) {
+    DomItems.renderListItem(this.listDoneTask, this.createDoneItem(value));
+  }
+
+  setHandlerAddNewTask() {
     this.addNewTaskBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const inputValue = this.inputNewTask.value;
@@ -40,5 +59,19 @@ export class Item {
       this.renderElement(inputValue);
       this.resetInputValue();
     })
+  }
+
+  setHandlerMakeTaskDone() {
+    this.listTaskInProgress.addEventListener('click', (e) => {
+      if (e.target.classList.contains('done-btn')) {
+        this.removeItemFromList(e);
+        this.renderDoneElement(e)
+      };
+    })
+  }
+
+  setHandler() {
+    this.setHandlerAddNewTask();
+    this.setHandlerMakeTaskDone();
   }
 }
