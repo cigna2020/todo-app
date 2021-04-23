@@ -4,6 +4,8 @@ import {DeletedItem} from './deleted-item.js';
 export class DoneItem {
 
   doneBtns = DomItems.getAllDoneBtns();
+  listTaskInProgress = DomItems.getListTaskInProgress();
+
 
   constructor() {
     this.setHandler();
@@ -15,11 +17,14 @@ export class DoneItem {
   }
 
   setHandler() {
-    this.doneBtns.forEach(el => el.addEventListener('click', (event) => {
-      this.copyParentElem(event)
-      console.log(this.copyParentElem(event));
-      DeletedItem.removeItemFromLis(event)
-    }))
+
+    this.listTaskInProgress.addEventListener('click', (e) => {
+      if (e.target.classList.contains('done-btn')) {
+        this.copyParentElem(e)
+        console.log(this.copyParentElem(e));
+        DeletedItem.removeItemFromLis(e)
+      };
+    })
   }
 
 }

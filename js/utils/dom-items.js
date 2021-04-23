@@ -13,7 +13,7 @@ export class DomItems {
   }
 
   static getAllDoneBtns() {
-    return document.querySelectorAll('#done-task');
+    return document.querySelectorAll('done-btn');
   }
 
   static renderListItem(parentElem, childElem) {
