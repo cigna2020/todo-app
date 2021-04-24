@@ -18,10 +18,11 @@ export class Item {
     newListItem.classList.add('progress-item');
     newListItem.insertAdjacentHTML('beforeend', `
           <label class="label-progress">${value}</label>
-          <input type="text" class="progress-input" placeholder="${value}">
+          <input type="text" class="progress-input display-none" value="${value}">
           <button class="progress-btn done-btn" id="${Date.now()}" title="mark as done">&#10004;</button>
           <button class="progress-btn delete-task" title="delete task">&#10008;</button>
-          <button class="progress-btn" id="edit-task" title="edit your task">&#10002;</button>
+          <button class="progress-btn edit-task" title="edit your task">&#10002;</button>
+          <button class="progress-btn save-task display-none" title="save your task">Save</button>
           `)
     return newListItem;
   }
@@ -36,8 +37,8 @@ export class Item {
     return newListItem;
   }
 
-  removeItemFromList(event) {
-    event.target.parentElement.remove();
+  removeItemFromList(e) {
+    e.target.parentElement.remove();
   }
 
   resetInputValue() {
@@ -52,10 +53,35 @@ export class Item {
     DomItems.renderListItem(this.listDoneTask, this.createDoneItem(value));
   }
 
-  setHandlerDeleteTask() {
-    // console.log(this.mainBlock)
+  static toggleDisplayNone(element) {
+    element.classList.toggle('display-none');
+  }
+
+  editElement(e) {
+    const btns = Array.from(DomItems.getChildElem(e, 'button'));
+    const inputElem = DomItems.getChildElem(e, 'input')[0];
+    const labelElem = DomItems.getChildElem(e, 'label')[0];
+
+    btns.forEach(btn => Item.toggleDisplayNone(btn));
+    Item.toggleDisplayNone(inputElem);
+    Item.toggleDisplayNone(labelElem);
+  }
+
+
+
+  setHandlerEditTask() {
     this.mainBlock.addEventListener('click', (e) => {
-      if (e.target.classList.contains('delete-task')) this.removeItemFromList(e);
+      if (e.target.classList.contains('edit-task')) {
+        this.editElement(e)
+      }
+    })
+  }
+
+  setHandlerDeleteTask() {
+    this.mainBlock.addEventListener('click', (e) => {
+      if (e.target.classList.contains('delete-task')) {
+        this.removeItemFromList(e);
+      };
     })
   }
 
@@ -82,5 +108,6 @@ export class Item {
     this.setHandlerAddNewTask();
     this.setHandlerMakeTaskDone();
     this.setHandlerDeleteTask();
+    this.setHandlerEditTask();
   }
 }

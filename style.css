@@ -144,7 +144,6 @@ body {
 }
 
 .progress-input {
-  display: none;
   width: 750px;
   height: 30px;
   border-radius: 15px;
@@ -181,4 +180,8 @@ body {
 
 .github a:hover {
   color: #102e80;
+}
+
+.display-none {
+  display: none;
 }
