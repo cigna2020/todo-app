@@ -67,14 +67,26 @@ export class Item {
     Item.toggleDisplayNone(labelElem);
   }
 
+  saveEditedElement(e) {
+    const btns = Array.from(DomItems.getChildElem(e, 'button'));
+    const inputElem = DomItems.getChildElem(e, 'input')[0];
+    const labelElem = DomItems.getChildElem(e, 'label')[0];
 
+    Validator.checkLengthOfInputValue(inputElem.value);
+    labelElem.textContent = `${inputElem.value}`;
+
+    btns.forEach(btn => Item.toggleDisplayNone(btn));
+    Item.toggleDisplayNone(inputElem);
+    Item.toggleDisplayNone(labelElem);
+
+
+  }
 
   setHandlerEditTask() {
     this.mainBlock.addEventListener('click', (e) => {
-      if (e.target.classList.contains('edit-task')) {
-        this.editElement(e)
-      }
-    })
+      if (e.target.classList.contains('edit-task')) this.editElement(e);
+      if (e.target.classList.contains('save-task')) this.saveEditedElement(e);
+    });
   }
 
   setHandlerDeleteTask() {
