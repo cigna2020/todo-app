@@ -3,6 +3,8 @@ import {Validator} from '../utils/validator.js';
 
 export class Item {
 
+  storage = [{text: 'Storage item, some text', id: 1}, {text: 'Test with storage, item 2', id: 2}];
+
   addNewTaskBtn = DomItems.getNewTaskBtn();
   listTaskInProgress = DomItems.getListTaskInProgress();
   inputNewTask = DomItems.getInputNewTask();
@@ -14,16 +16,22 @@ export class Item {
   }
 
   createListItem(value) {
-    const newListItem = document.createElement('li');
-    newListItem.classList.add('progress-item');
-    newListItem.insertAdjacentHTML('beforeend', `
-          <label class="label-progress">${value}</label>
-          <input type="text" class="progress-input display-none" value="${value}">
-          <button class="progress-btn done-btn" id="${Date.now()}" title="mark as done">&#10004;</button>
+    this.storage.push({text: `${value}`, id: `${Date.now()}`});
+    const newListItem = document.createElement('ul');
+    newListItem.classList.add('list-progress');
+    newListItem.id = 'list-progress';
+    for (const item of this.storage) {
+      newListItem.insertAdjacentHTML('beforeend', `
+        <li class="progress-item">
+          <label class="label-progress">${item.text}</label>
+          <input type="text" class="progress-input display-none" value="${item.text}">
+          <button class="progress-btn done-btn" id="${item.id}" title="mark as done">&#10004;</button>
           <button class="progress-btn delete-task" title="delete task">&#10008;</button>
           <button class="progress-btn edit-task" title="edit your task">&#10002;</button>
           <button class="progress-btn save-task display-none" title="save your task">Save</button>
-          `)
+        </li>
+          `);
+    }
     return newListItem;
   }
 
@@ -82,6 +90,13 @@ export class Item {
 
   }
 
+  hideListOfElements() {
+    this.mainBlock.addEventListener('click', (e) => {
+      if (e.target.id === 'hide-progress') Item.toggleDisplayNone(this.listTaskInProgress);
+      if (e.target.id === 'hide-done') Item.toggleDisplayNone(this.listDoneTask);
+    });
+  }
+
   setHandlerEditTask() {
     this.mainBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('edit-task')) this.editElement(e);
@@ -121,5 +136,6 @@ export class Item {
     this.setHandlerMakeTaskDone();
     this.setHandlerDeleteTask();
     this.setHandlerEditTask();
+    this.hideListOfElements();
   }
 }
