@@ -1,5 +1,9 @@
 export class DomItems {
 
+  static getMainBlock() {
+    return document.getElementById('main-block');
+  }
+
   static getListTaskInProgress() {
     return document.getElementById('list-progress');
   }

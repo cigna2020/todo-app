@@ -41,7 +41,7 @@
     </form>
   </div>
 
-  <main>
+  <main id="main-block">
     <div class="block-wrapper">
       <div class="title-wrapper">
         <div class="list-title">List of tasks in progress</div>
@@ -54,42 +54,40 @@
         <li class="progress-item">
           <label class="label-progress">Test, task #1, label</label>
           <input type="text" class="progress-input" placeholder="Test, task #1">
-          <button class="progress-btn done-btn" id="done-task" title="mark as done">&#10004;</button>
-          <button class="progress-btn" id="delete-task" title="delete task">&#10008;</button>
+          <button class="progress-btn done-btn" title="mark as done">&#10004;</button>
+          <button class="progress-btn delete-task" title="delete task">&#10008;</button>
           <button class="progress-btn" id="edit-task" title="edit your task">&#10002;</button>
         </li>
         <li class="progress-item">
           <label class="label-progress">Test, task #2, label</label>
           <input type="text" class="progress-input" placeholder="Test, task #2">
-          <button class="progress-btn done-btn" id="done-task" title="mark as done">&#10004;</button>
+          <button class="progress-btn done-btn" title="mark as done">&#10004;</button>
           <button class="progress-btn delete-task" title="delete task">&#10008;</button>
           <button class="progress-btn edit-task" title="edit your task">&#10002;</button>
         </li>
       </ul>
     </div>
-  </main>
 
-  <div class="block-wrapper">
-    <div class="title-wrapper">
-      <div class="list-title">List of Done tasks</div>
-      <div class="btn-wrapper">
-        <button class="progress-btn toggle">Hide</button>
-        <button class="progress-btn toggle">Sort</button>
+    <div class="block-wrapper">
+      <div class="title-wrapper">
+        <div class="list-title">List of Done tasks</div>
+        <div class="btn-wrapper">
+          <button class="progress-btn toggle">Hide</button>
+          <button class="progress-btn toggle">Sort</button>
+        </div>
       </div>
+      <ul class="list-done" id="list-done">
+        <li class="done-item">
+          <label class="label-progress">Done test, task #1, label</label>
+          <button class="progress-btn delete-task" title="delete task">&#10008;</button>
+        </li>
+        <li class="progress-item">
+          <label class="label-progress">Test, task #2, label</label>
+          <button class="progress-btn delete-task" title="delete task">&#10008;</button>
+        </li>
+      </ul>
     </div>
-    <ul class="list-done" id="list-done">
-      <li class="done-item">
-        <label class="label-progress">Done test, task #1, label</label>
-        <!-- <input type="text" class="done-task" placeholder="Done test, task #1"> -->
-        <button class="progress-btn delete-task" title="delete task">&#10008;</button>
-      </li>
-      <li class="progress-item">
-        <label class="label-progress">Test, task #2, label</label>
-        <!-- <input type="text" class="done-task" placeholder="Test, task #2"> -->
-        <button class="progress-btn delete-task" title="delete task">&#10008;</button>
-      </li>
-    </ul>
-  </div>
+  </main>
 
   <footer>
     <div class="block-wrapper footer">
