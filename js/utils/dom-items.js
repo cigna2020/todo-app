@@ -32,6 +32,14 @@ export class DomItems {
     return document.querySelectorAll('done-btn');
   }
 
+  static getAllLiElements() {
+    return document.querySelectorAll('.teg-li');
+  }
+
+  static getInputFilter() {
+    return document.getElementById('filter');
+  }
+
   static getChildElem(e, tagName) {
     return e.target.parentElement.getElementsByTagName(tagName);
   }

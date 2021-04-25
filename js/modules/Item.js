@@ -12,6 +12,8 @@ export class Item {
   listDoneTask = DomItems.getListDoneTask();
   mainBlock = DomItems.getMainBlock();
   blockDoneTask = DomItems.getBlockDoneTask();
+  allLiElements = DomItems.getAllLiElements();
+  iputFilter = DomItems.getInputFilter();
 
   constructor() {
     this.setHandler();
@@ -30,7 +32,7 @@ export class Item {
     for (const item of this.storage) {
       if (!item.done) {
         newListItem.insertAdjacentHTML('beforeend', `
-          <li class= "progress-item">
+          <li class= "progress-item teg-li">
               <label class="label-progress">${item.text}</label>
               <input type="text" class="progress-input display-none" value="${item.text}">
               <button class="progress-btn done-btn" id="${item.id}" title="mark as done">&#10004;</button>
@@ -53,7 +55,7 @@ export class Item {
     for (const item of this.storage) {
       if (item.done) {
         newListItem.insertAdjacentHTML('beforeend', `
-          <li class="done-item">
+          <li class="done-item teg-li">
            <label class="label-progress">${item.text}</label>
            <button button class= "progress-btn delete-task" title = "delete task" data-btnid="${item.id}">&#10008;</button >
           </li>
@@ -145,6 +147,21 @@ export class Item {
     DomItems.renderListItem(this.blockTaskInProgress, this.createListItem());
   }
 
+  filterElements(e) {
+    this.allLiElements = DomItems.getAllLiElements();
+    this.allLiElements.forEach(liElem => {
+      const labelELem = liElem.getElementsByTagName('label');
+      if (!labelELem[0].innerText.includes(e.target.value)) liElem.classList.add('display-none');
+      else liElem.classList.remove('display-none')
+    })
+  }
+
+  setHandlerFilterElements() {
+    this.iputFilter.addEventListener('input', (e) => {
+      this.filterElements(e);
+    })
+  }
+
   setHandlerSortElements() {
     this.mainBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('sort-btn')) this.sortElements();
@@ -193,5 +210,6 @@ export class Item {
     this.setHandlerEditTask();
     this.hideListOfElements();
     this.setHandlerSortElements();
+    this.setHandlerFilterElements();
   }
 }
