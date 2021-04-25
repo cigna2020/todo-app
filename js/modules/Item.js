@@ -31,7 +31,7 @@ export class Item {
               <label class="label-progress">${item.text}</label>
               <input type="text" class="progress-input display-none" value="${item.text}">
               <button class="progress-btn done-btn" id="${item.id}" title="mark as done">&#10004;</button>
-              <button class="progress-btn delete-task" title="delete task">&#10008;</button>
+              <button class="progress-btn delete-task" title="delete task" data-btnid="${item.id}">&#10008;</button>
               <button class="progress-btn edit-task" title="edit your task">&#10002;</button>
               <button class="progress-btn save-task display-none" data-btnid="${item.id}" title="save your task">Save</button>
           </li>
@@ -52,7 +52,7 @@ export class Item {
         newListItem.insertAdjacentHTML('beforeend', `
           <li class="done-item">
            <label class="label-progress">${item.text}</label>
-           <button button class= "progress-btn delete-task" title = "delete task" >&#10008;</button >
+           <button button class= "progress-btn delete-task" title = "delete task" data-btnid="${item.id}">&#10008;</button >
           </li>
         `)
       }
@@ -62,6 +62,12 @@ export class Item {
 
   removeItemFromList(e) {
     e.target.parentElement.remove();
+    for (const item of this.storage) {
+      if (item.id === e.target.dataset.btnid) {
+        const indexOfItem = this.storage.indexOf(item);
+        this.storage.splice(indexOfItem, 1);
+      }
+    }
   }
 
   resetInputValue() {
@@ -130,9 +136,7 @@ export class Item {
 
   setHandlerDeleteTask() {
     this.mainBlock.addEventListener('click', (e) => {
-      if (e.target.classList.contains('delete-task')) {
-        this.removeItemFromList(e);
-      };
+      if (e.target.classList.contains('delete-task')) this.removeItemFromList(e);
     })
   }
 
