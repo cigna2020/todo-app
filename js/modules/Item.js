@@ -3,10 +3,7 @@ import {Validator} from '../utils/validator.js';
 
 export class Item {
 
-  storage = [{text: 'Storage item, some text', id: 1, done: false},
-  // {text: 'Test with storage, item 2', id: 2, done: false},
-  // {text: 'Done, Storage item, some text', id: 1, done: true},
-  {text: 'Done, Test with storage, item 2', id: 2, done: true}];
+  storage = [];
 
   addNewTaskBtn = DomItems.getNewTaskBtn();
   blockTaskInProgress = DomItems.getBlockTaskInProgress();
@@ -30,13 +27,13 @@ export class Item {
     for (const item of this.storage) {
       if (!item.done) {
         newListItem.insertAdjacentHTML('beforeend', `
-          <li class= "progress-item" id="${item.id}" >
+          <li class= "progress-item">
               <label class="label-progress">${item.text}</label>
               <input type="text" class="progress-input display-none" value="${item.text}">
-              <button class="progress-btn done-btn" title="mark as done">&#10004;</button>
+              <button class="progress-btn done-btn" id="${item.id}" title="mark as done">&#10004;</button>
               <button class="progress-btn delete-task" title="delete task">&#10008;</button>
               <button class="progress-btn edit-task" title="edit your task">&#10002;</button>
-              <button class="progress-btn save-task display-none" title="save your task">Save</button>
+              <button class="progress-btn save-task display-none" data-btnid="${item.id}" title="save your task">Save</button>
           </li>
         `);
       }
@@ -50,18 +47,16 @@ export class Item {
     const newListItem = document.createElement('ul');
     newListItem.classList.add('list-done');
     newListItem.id = 'list-done-id';
-    // newListItem.append(DomItems.copyChildtElem(value));
     for (const item of this.storage) {
       if (item.done) {
         newListItem.insertAdjacentHTML('beforeend', `
-          <li class="done-item" id="${item.id}">
+          <li class="done-item">
            <label class="label-progress">${item.text}</label>
            <button button class= "progress-btn delete-task" title = "delete task" >&#10008;</button >
           </li>
         `)
       }
     }
-
     return newListItem;
   }
 
@@ -93,6 +88,8 @@ export class Item {
     btns.forEach(btn => Item.toggleDisplayNone(btn));
     Item.toggleDisplayNone(inputElem);
     Item.toggleDisplayNone(labelElem);
+
+    console.log(this.storage)
   }
 
   saveEditedElement(e) {
@@ -101,9 +98,15 @@ export class Item {
     const labelElem = DomItems.getChildElem(e, 'label')[0];
 
     Validator.checkLengthOfInputValue(inputElem.value);
+
     labelElem.textContent = `${inputElem.value} `;
 
-    btns.forEach(btn => Item.toggleDisplayNone(btn));
+    btns.forEach(btn => {
+      Item.toggleDisplayNone(btn);
+      for (const item of this.storage) {
+        if (item.id === btn.dataset.btnid) item.text = inputElem.value;
+      }
+    });
     Item.toggleDisplayNone(inputElem);
     Item.toggleDisplayNone(labelElem);
   }
@@ -143,6 +146,9 @@ export class Item {
   setHandlerMakeTaskDone() {
     this.blockTaskInProgress.addEventListener('click', (e) => {
       if (e.target.classList.contains('done-btn')) {
+        for (const item of this.storage) {
+          if (item.id === e.target.id) item.done = true;
+        }
         this.removeItemFromList(e);
         this.renderDoneElement(e)
       };

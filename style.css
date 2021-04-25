@@ -127,7 +127,8 @@ body {
   justify-content: space-between;
 }
 
-.progress-item {
+.progress-item,
+.done-item {
   margin-top: 20px;
 }
 
