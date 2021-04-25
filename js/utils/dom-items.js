@@ -39,9 +39,4 @@ export class DomItems {
   static renderListItem(parentElem, childElem) {
     parentElem.append(childElem);
   }
-
-  // static copyChildtElem(e) {
-  //   const childElem = e.target.parentElement.getElementsByTagName('label')[0];
-  //   return childElem;
-  // }
 }

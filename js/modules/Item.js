@@ -17,8 +17,11 @@ export class Item {
     this.setHandler();
   }
 
-  createListItem(value) {
+  addNewItemInStorage(value) {
     this.storage.push({text: `${value}`, id: `${Date.now()}`, done: false});
+  }
+
+  createListItem() {
     this.listTaskInProgress = DomItems.getListTaskInProgress();
     if (this.listTaskInProgress) this.listTaskInProgress.remove()
     const newListItem = document.createElement('ul');
@@ -41,7 +44,7 @@ export class Item {
     return newListItem;
   }
 
-  createDoneItem(value) {
+  createDoneItem() {
     this.listDoneTask = DomItems.getListDoneTask();
     if (this.listDoneTask) this.listDoneTask.remove();
     const newListItem = document.createElement('ul');
@@ -75,11 +78,12 @@ export class Item {
   }
 
   renderElement(value) {
-    DomItems.renderListItem(this.blockTaskInProgress, this.createListItem(value));
+    this.addNewItemInStorage(value);
+    DomItems.renderListItem(this.blockTaskInProgress, this.createListItem());
   }
 
-  renderDoneElement(value) {
-    DomItems.renderListItem(this.blockDoneTask, this.createDoneItem(value));
+  renderDoneElement() {
+    DomItems.renderListItem(this.blockDoneTask, this.createDoneItem());
   }
 
   static toggleDisplayNone(element) {
@@ -127,6 +131,26 @@ export class Item {
     });
   }
 
+  sortElements() {
+    this.storage.sort((a, b) => {
+      const textA = a.text.toUpperCase();
+      const textB = b.text.toUpperCase();
+      if (textA < textB) return -1;
+      if (textA > textB) return 1;
+      return 0;
+    });
+    this.createListItem();
+    this.createDoneItem();
+    this.renderDoneElement();
+    DomItems.renderListItem(this.blockTaskInProgress, this.createListItem());
+  }
+
+  setHandlerSortElements() {
+    this.mainBlock.addEventListener('click', (e) => {
+      if (e.target.classList.contains('sort-btn')) this.sortElements();
+    })
+  }
+
   setHandlerEditTask() {
     this.mainBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('edit-task')) this.editElement(e);
@@ -168,5 +192,6 @@ export class Item {
     this.setHandlerDeleteTask();
     this.setHandlerEditTask();
     this.hideListOfElements();
+    this.setHandlerSortElements();
   }
 }
