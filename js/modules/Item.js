@@ -88,8 +88,6 @@ export class Item {
     btns.forEach(btn => Item.toggleDisplayNone(btn));
     Item.toggleDisplayNone(inputElem);
     Item.toggleDisplayNone(labelElem);
-
-    console.log(this.storage)
   }
 
   saveEditedElement(e) {
@@ -98,8 +96,7 @@ export class Item {
     const labelElem = DomItems.getChildElem(e, 'label')[0];
 
     Validator.checkLengthOfInputValue(inputElem.value);
-
-    labelElem.textContent = `${inputElem.value} `;
+    labelElem.textContent = `${inputElem.value}`;
 
     btns.forEach(btn => {
       Item.toggleDisplayNone(btn);
@@ -113,8 +110,14 @@ export class Item {
 
   hideListOfElements() {
     this.mainBlock.addEventListener('click', (e) => {
-      if (e.target.id === 'hide-progress') Item.toggleDisplayNone(this.blockTaskInProgress);
-      if (e.target.id === 'hide-done') Item.toggleDisplayNone(this.listDoneTask);
+      if (e.target.id === 'hide-progress') {
+        this.listTaskInProgress = DomItems.getListTaskInProgress();
+        if (this.listTaskInProgress !== null) Item.toggleDisplayNone(this.listTaskInProgress);
+      }
+      if (e.target.id === 'hide-done') {
+        this.listDoneTask = DomItems.getListDoneTask();
+        if (this.listDoneTask !== null) Item.toggleDisplayNone(this.listDoneTask);
+      }
     });
   }
 
