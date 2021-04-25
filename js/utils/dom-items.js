@@ -4,12 +4,20 @@ export class DomItems {
     return document.getElementById('main-block');
   }
 
+  static getBlockTaskInProgress() {
+    return document.getElementById('progress-wrapper');
+  }
+
+  static getBlockDoneTask() {
+    return document.getElementById('done-wrapper');
+  }
+
   static getListTaskInProgress() {
-    return document.getElementById('list-progress');
+    return document.getElementById('progress-list-id');
   }
 
   static getListDoneTask() {
-    return document.getElementById('list-done');
+    return document.getElementById('list-done-id');
   }
 
   static getInputNewTask() {
@@ -32,8 +40,8 @@ export class DomItems {
     parentElem.append(childElem);
   }
 
-  static copyChildtElem(e) {
-    const childElem = e.target.parentElement.getElementsByTagName('label')[0];
-    return childElem;
-  }
+  // static copyChildtElem(e) {
+  //   const childElem = e.target.parentElement.getElementsByTagName('label')[0];
+  //   return childElem;
+  // }
 }
